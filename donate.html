@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ủng Hộ Đội Ngũ Phát Triển</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- FontAwesome for icons -->
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Toàn bộ trang */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #333;
+            margin: 0;
+            overflow-x: hidden;
+            scroll-behavior: smooth; /* Hiệu ứng cuộn mượt mà */
+        }
+
+        /* Menu góc trái và phải */
+        .nav-left, .nav-right {
+            position: absolute;
+            top: 30px;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-left {
+            left: 15px;
+        }
+
+        .nav-right {
+            right: 15px;
+        }
+
+        .nav-left a, .nav-right a {
+            color: #fff;
+            font-size: 14px;
+            text-decoration: none;
+            margin: 0 8px;
+            padding: 6px 16px;
+            border-radius: 25px;
+            background-color: #3498db;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .nav-left a:hover, .nav-right a:hover {
+            background-color: #2980b9;
+            transform: translateY(-5px);
+        }
+
+        /* Container của nội dung ủng hộ */
+        .support-container {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Tiêu đề */
+        .support-container h1 {
+            font-size: 2.2em;
+            font-weight: 600;
+            color: #2ecc71;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .support-container h1:hover {
+            transform: scale(1.05);
+        }
+
+        /* Nội dung */
+        .support-container p {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        /* Các nút thanh toán */
+        .payment-methods {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .payment-methods a {
+            padding: 0;
+            background-color: transparent;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            text-decoration: none;
+        }
+
+        .payment-methods img {
+            width: 110px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .payment-methods img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: #777;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 480px) {
+            .nav-left, .nav-right {
+                position: static;
+                text-align: center;
+                margin-top: 20px;
+            }
+
+            .nav-left a, .nav-right a {
+                display: block;
+                margin: 5px 0;
+                font-size: 14px;
+                padding: 8px;
+            }
+
+            .support-container {
+                width: 90%;
+                padding: 25px;
+            }
+
+            .support-container h1 {
+                font-size: 1.8em;
+            }
+
+            .payment-methods {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .payment-methods a {
+                margin-bottom: 15px;
+            }
+
+            .payment-methods img {
+                width: 100px;
+            }
+
+            .footer {
+                font-size: 0.8em;
+            }
+
+            /* Điều chỉnh lại font-size cho đoạn văn */
+            .support-container p {
+                font-size: 1em;
+            }
+        }
+
+        /* Thêm phần cuộn trang */
+        .scrolling-container {
+            position: relative;
+            margin-top: 30px;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .scrolling-container a {
+            color: #3498db;
+            font-size: 18px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .scrolling-container a:hover {
+            color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Menu trái -->
+    <div class="nav-left">
+        <a href="index.html">Trang chủ</a>
+        <a href="filebaitap.html">File Bài Tập</a>
+    </div>
+
+    <!-- Menu phải -->
+    <div class="nav-right">
+        <a href="lienhe.html">Liên hệ</a>
+        <a href="page2.htm">Khoá Học</a>
+        <a href="chonquiz.html">Quiz</a>
+    </div>
+
+    <div class="support-container">
+        <h1>Ủng Hộ Đội Ngũ Phát Triển!</h1>
+        <p>Chúng tôi rất trân trọng mọi sự ủng hộ từ bạn. Những đóng góp của bạn sẽ giúp đội ngũ chúng tôi tiếp tục phát triển, cải tiến và duy trì hoạt động của trang web này.</p>
+
+        <div class="payment-methods">
+            <a href="https://me.momo.vn/vjI1TotkFXtVCVUNiRsbCd" target="_blank" title="MOMO">
+                <img src="https://cdn.haitrieu.com/wp-content/uploads/2022/10/Logo-MoMo-Square.png" alt="Momo">
+            </a>
+            <a href="https://i.postimg.cc/hj7XyqhH/z6022318947089-93cf5a7e83eb04f84b30c58476a40647.jpg" target="_blank" title="MB BANK">
+                <img src="https://i.pinimg.com/474x/ca/37/a6/ca37a6edf9de211c99ecd300289b0973.jpg" alt="MB">
+            </a>
+        </div>
+
+        <div class="footer">
+            <p>© 2024. Chúng tôi cam kết minh bạch trong việc sử dụng mọi khoản ủng hộ.</p>
+        </div>
+    </div>
+
+    <!-- Thêm phần cuộn trang -->
+    <div class="scrolling-container">
+
+</body>
+</html>

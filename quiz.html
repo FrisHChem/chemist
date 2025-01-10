@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Hóa Học</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        #quiz-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+        }
+        .question {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .answers {
+            margin-top: 20px;
+        }
+        .answer {
+            background-color: #1f2937;
+            color: white;
+            border: none;
+            padding: 12px;
+            margin: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 18px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .answer:hover {
+            background-color: #374151;
+            transform: scale(1.03);
+        }
+        .correct {
+            background-color: #4CAF50;
+        }
+        .incorrect {
+            background-color: #f44336;
+        }
+        .result-container {
+            font-size: 18px;
+            color: #374151;
+            text-align: center;
+            padding: 40px;
+            border-radius: 12px;
+            background-color: #f9fafb;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .result-title {
+            font-weight: bold;
+            color: #1f2937;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        .score {
+            font-size: 24px;
+            color: #10b981;
+            margin-bottom: 20px;
+        }
+        .retake-button, .home-button {
+            background-color: #1f2937;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            margin: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        .retake-button:hover, .home-button:hover {
+            background-color: #374151;
+        }
+        .view-results-button {
+    display: inline-block;
+    background-color: #10b981;
+    color: white;
+    padding: 12px 30px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 18px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.view-results-button:hover {
+    background-color: #059669;
+}
+
+    </style>
+</head>
+<body>
+
+    <div id="quiz-container">
+        <div class="question" id="question"></div>
+        <div class="answers" id="answers"></div>
+    </div>
+
+    <script>
+        const quizSets = {
+            1: [  // Easy questions
+                { question: "Hóa trị của oxi là bao nhiêu?", answers: ["1", "2", "3", "4"], correctAnswer: 1 },
+                { question: "H2O là công thức của chất gì?", answers: ["Cồn", "Nước", "Acid sulfuric", "Amoniac"], correctAnswer: 1 },
+                { question: "CO2 là công thức của chất nào?", answers: ["Carbon monoxide", "Oxi", "Carbon dioxide", "Hydrogen"], correctAnswer: 2 },
+                { question: "Chất nào là axit?", answers: ["NaOH", "HCl", "NaCl", "Nước"], correctAnswer: 1 },
+                { question: "NaCl là chất gì?", answers: ["Muối ăn", "Nước", "Khí", "Hóa chất độc"], correctAnswer: 0 },
+                { question: "Kim loại nào nhẹ nhất?", answers: ["Vàng", "Bạc", "Lithium", "Nhôm"], correctAnswer: 2 },
+                { question: "Chất nào không phải là axit?", answers: ["HCl", "H2SO4", "NaCl", "HNO3"], correctAnswer: 2 },
+                { question: "HCl là chất gì?", answers: ["Axit clohidric", "Axit sulfuric", "Axit nitric", "Nước"], correctAnswer: 0 },
+                { question: "Công thức hóa học của amoniac?", answers: ["H2O", "NH3", "CO2", "NaOH"], correctAnswer: 1 },
+                { question: "Oxi có trong chất gì?", answers: ["Đường", "Nước", "Khí oxi", "Tất cả đều đúng"], correctAnswer: 3 },
+                { question: "Bản chất của nước?", answers: ["Hợp chất", "Kim loại", "Phi kim", "Chất khí"], correctAnswer: 0 },
+                { question: "Axit sulfuric có công thức nào?", answers: ["H2SO4", "HCl", "HNO3", "H2O"], correctAnswer: 0 },
+                { question: "CO là gì?", answers: ["Carbon", "Carbon monoxide", "Nước", "Khí nitơ"], correctAnswer: 1 },
+                { question: "Chất nào là base?", answers: ["H2SO4", "NaOH", "HCl", "NaCl"], correctAnswer: 1 },
+                { question: "Axit nitric có công thức nào?", answers: ["HNO3", "H2SO4", "HCl", "NaOH"], correctAnswer: 0 },
+                { question: "Công thức của CO2?", answers: ["CO", "CO2", "O2", "H2O"], correctAnswer: 1 },
+                { question: "Hòa tan NaOH vào nước tạo ra?", answers: ["Nước kiềm", "Nước axit", "Nước muối", "Không tạo phản ứng"], correctAnswer: 0 },
+                { question: "Nước có công thức hóa học?", answers: ["H2O", "HCl", "NaOH", "CO2"], correctAnswer: 0 },
+                { question: "Fe là ký hiệu hóa học của chất gì?", answers: ["Vàng", "Sắt", "Kẽm", "Đồng"], correctAnswer: 1 },
+                { question: "Chất nào dưới đây là hợp chất?", answers: ["Cồn", "Oxi", "Nước", "Carbon"], correctAnswer: 2 }
+            ],
+            2: [  // Medium questions
+                { question: "Hợp chất nào có công thức H2SO4?", answers: ["Axit sulfuric", "Axit clohidric", "Axit nitric", "Axit axetic"], correctAnswer: 0 },
+                { question: "Kim loại nào dẫn điện tốt nhất?", answers: ["Sắt", "Nhôm", "Đồng", "Vàng"], correctAnswer: 2 },
+                { question: "Chất nào không phải là hợp chất?", answers: ["H2O", "CO2", "O2", "NaOH"], correctAnswer: 2 },
+                { question: "Hợp chất nào sau đây là axit?", answers: ["NaOH", "HCl", "NaCl", "KOH"], correctAnswer: 1 },
+                { question: "Thủy tinh là hợp chất của chất nào?", answers: ["Sodium", "Silic", "Oxi", "Chì"], correctAnswer: 1 },
+                { question: "Công thức của axit nitric?", answers: ["H2SO4", "HCl", "HNO3", "H3PO4"], correctAnswer: 2 },
+                { question: "Kí hiệu hóa học của đồng là gì?", answers: ["Cu", "Au", "Ag", "Fe"], correctAnswer: 0 },
+                { question: "Phản ứng nào là phản ứng oxy hóa?", answers: ["2Na + Cl2 -> NaCl", "Cu + O2 -> CuO", "NaOH + HCl -> NaCl + H2O", "Zn + HCl -> ZnCl2 + H2"], correctAnswer: 1 },
+                { question: "Phản ứng nào sau đây là phản ứng trao đổi?", answers: ["Na + Cl2 -> NaCl", "Cu + O2 -> CuO", "NaOH + HCl -> NaCl + H2O", "Zn + HCl -> ZnCl2 + H2"], correctAnswer: 2 },
+                { question: "Axit mạnh nhất sau đây là gì?", answers: ["HCl", "H2SO4", "HNO3", "HF"], correctAnswer: 1 },
+                { question: "Kí hiệu hóa học của vàng là gì?", answers: ["Ag", "Au", "Pb", "Pt"], correctAnswer: 1 },
+                { question: "Khí nào có thể làm đục nước vôi trong?", answers: ["CO2", "O2", "N2", "CH4"], correctAnswer: 0 },
+                { question: "Phản ứng nào là phản ứng phân hủy?", answers: ["2H2O2 -> 2H2O + O2", "H2 + O2 -> H2O", "Na + Cl2 -> NaCl", "CaCO3 -> CaO + CO2"], correctAnswer: 0 },
+                { question: "Khí CO2 có trong chất nào?", answers: ["Nước soda", "Đường", "Cồn", "Nước"], correctAnswer: 0 },
+                { question: "Công thức hóa học của Ammoniac?", answers: ["NH3", "H2O", "NaCl", "H2O2"], correctAnswer: 0 },
+                { question: "Hợp chất nào sau đây có tính axit?", answers: ["NaOH", "H2SO4", "NaCl", "Na2CO3"], correctAnswer: 1 },
+                { question: "Công thức hóa học của khí oxi?", answers: ["O2", "CO", "CO2", "H2"], correctAnswer: 0 },
+                { question: "Tính chất nào là đặc trưng của kim loại?", answers: ["Dẫn điện", "Có mùi đặc trưng", "Tan trong nước", "Sôi ở nhiệt độ thấp"], correctAnswer: 0 },
+                { question: "Các oxit sau đây là oxit axit?", answers: ["CO2", "CaO", "Na2O", "Fe2O3"], correctAnswer: 0 },
+                { question: "Công thức của khí metan?", answers: ["CH4", "CO2", "C2H5OH", "C6H12O6"], correctAnswer: 0 }
+            ],
+            3: [  // Difficult questions
+                { question: "Sự oxi hóa là quá trình mà nguyên tử nhận hay mất electron?", answers: ["Nhận electron", "Mất electron", "Không nhận không mất", "Cả hai đều đúng"], correctAnswer: 1 },
+                { question: "Axit mạnh nhất sau đây là?", answers: ["H2SO4", "HF", "HNO3", "HClO4"], correctAnswer: 3 },
+                { question: "Kết quả của phản ứng giữa KOH và HCl là gì?", answers: ["NaCl", "K2SO4", "KCl", "NaOH"], correctAnswer: 2 },
+                { question: "Phản ứng nào là phản ứng oxi hóa khử?", answers: ["Cu + O2 -> CuO", "2Na + Cl2 -> NaCl", "H2O2 -> H2O + O2", "Zn + HCl -> ZnCl2 + H2"], correctAnswer:0  },
+                { question: "Hợp chất nào dưới đây là hợp chất hữu cơ?", answers: ["CO2", "CH4", "CaCO3", "NaCl"], correctAnswer: 1 },
+                { question: "Kí hiệu hóa học của bạc?", answers: ["Ag", "Au", "Cu", "Pb"], correctAnswer: 0 },
+                { question: "Axit nitric có tính chất đặc biệt nào?", answers: ["Là axit mạnh", "Có tính khử", "Có tính oxi hóa", "Không tác dụng với kim loại"], correctAnswer: 2 },
+                { question: "Đặc điểm của kim loại kiềm?", answers: ["Dễ bị oxi hóa", "Có tính dẫn điện tốt", "Không phản ứng với nước", "Dễ bị nổ trong không khí"], correctAnswer: 0 },
+                { question: "Phản ứng nào dưới đây là phản ứng trung hòa?", answers: ["NaOH + HCl -> NaCl + H2O", "Na + Cl2 -> NaCl", "Fe2O3 + CO -> Fe + CO2", "C + O2 -> CO2"], correctAnswer: 0 },
+                { question: "Hợp chất nào có tính bazơ?", answers: ["NaOH", "H2SO4", "NaCl", "HNO3"], correctAnswer: 0 },
+                { question: "Điều kiện cần thiết để phản ứng xảy ra nhanh chóng?", answers: ["Nhiệt độ cao", "Nhiệt độ thấp", "Áp suất thấp", "Không có gì đặc biệt"], correctAnswer: 0 },
+                { question: "Trong phản ứng trao đổi, chất nào sẽ được thay thế?", answers: ["Chất phản ứng", "Chất xúc tác", "Chất làm nóng", "Chất hóa học"], correctAnswer: 0 },
+                { question: "Công thức của kali nitrat?", answers: ["KNO3", "K2SO4", "NaNO3", "KNO2"], correctAnswer: 0 },
+                { question: "Chất nào là axit yếu?", answers: ["HCl", "H2SO4", "CH3COOH", "HNO3"], correctAnswer: 2 },
+                { question: "Công thức của khí ammoniac?", answers: ["NH3", "CO2", "CH4", "N2O"], correctAnswer: 0 },
+                { question: "Công thức hóa học của muối natri clorua?", answers: ["NaCl", "KCl", "CaCl2", "NaOH"], correctAnswer: 0 },
+                { question: "Chất nào không phải là hợp chất hữu cơ?", answers: ["H2O", "C6H12O6", "CH4", "C2H5OH"], correctAnswer: 0 },
+                { question: "Nguyên tố nào sau đây là kim loại chuyển tiếp?", answers: ["Fe", "Na", "Al", "Ca"], correctAnswer: 0 },
+                { question: "Chất nào là chất điện li mạnh?", answers: ["NaCl", "CH3COOH", "H2O", "NH3"], correctAnswer: 0 },
+                { question: "Số oxi hóa của lưu huỳnh trong H2SO4 là bao nhiêu?", answers: ["+4", "+6", "-2", "0"], correctAnswer: 1 },
+
+            ]
+        };
+
+        let currentQuiz = parseInt(new URLSearchParams(window.location.search).get('quiz')) || 1;
+        let questions = quizSets[currentQuiz] || quizSets[1];
+        let currentQuestionIndex = 0;
+        let score = 0;
+
+        function loadQuestion() {
+            const questionData = questions[currentQuestionIndex];
+            document.getElementById("question").innerText = questionData.question;
+            const answersContainer = document.getElementById("answers");
+            answersContainer.innerHTML = "";
+
+            questionData.answers.forEach((answer, index) => {
+                const button = document.createElement("button");
+                button.classList.add("answer");
+                button.innerText = answer;
+                button.onclick = () => handleAnswer(index);
+                answersContainer.appendChild(button);
+            });
+        }
+
+        function handleAnswer(selectedIndex) {
+            const questionData = questions[currentQuestionIndex];
+            if (selectedIndex === questionData.correctAnswer) {
+                score += 0.5;
+            }
+            currentQuestionIndex++;
+            if (currentQuestionIndex < questions.length) {
+                loadQuestion();
+            } else {
+                showResult();
+            }
+        }
+
+        function showResult() {
+    const container = document.getElementById("quiz-container");
+    container.innerHTML = ` 
+        <div class="result-container">
+            <div class="result-title">Kết quả bài thi</div>
+            <div class="score">Điểm của bạn: ${score} / 10</div>
+            <a href="result.html?score=${score}" class="view-results-button">Xem kết quả chi tiết</a>
+            <button onclick="restartQuiz()" class="retake-button">Làm lại quiz</button>
+            <button onclick="goHome()" class="home-button">Về trang chủ</button>
+        </div>
+    `;
+}
+
+
+        function restartQuiz() {
+            window.location.href = 'chonquiz.html';
+        }
+
+        function goHome() {
+            window.location.href = 'index.html';  // Thay thế bằng trang chính của bạn
+        }
+
+        loadQuestion();
+        let answersStatus = []; // Mảng lưu trạng thái đúng/sai của từng câu trả lời
+
+function handleAnswer(selectedIndex) {
+    const questionData = questions[currentQuestionIndex];
+    
+    if (selectedIndex === questionData.correctAnswer) {
+        score += 0.5;
+        answersStatus.push(true); // Đúng
+    } else {
+        answersStatus.push(false); // Sai
+    }
+    
+    currentQuestionIndex++;
+    if (currentQuestionIndex < questions.length) {
+        loadQuestion();
+    } else {
+        showResult();
+    }
+}
+
+function showResult() {
+    const container = document.getElementById("quiz-container");
+    container.innerHTML = ` 
+        <div class="result-container">
+            <div class="result-title">Kết quả bài thi</div>
+            <div class="score">Điểm của bạn: ${score} / 10</div>
+            <a href="result.html?score=${score}&answersStatus=${encodeURIComponent(JSON.stringify(answersStatus))}" class="view-results-button">Xem kết quả chi tiết</a>
+            <button onclick="restartQuiz()" class="retake-button">Làm lại quiz</button>
+            <button onclick="goHome()" class="home-button">Về trang chủ</button>
+        </div>
+    `;
+}
+
+    </script>
+
+</body>
+</html>
