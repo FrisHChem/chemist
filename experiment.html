@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mô Phỏng Thí Nghiệm Hóa Học</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+        .toolbox {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding: 10px;
+            background-color: #f1f1f1;
+        }
+        .toolbox img {
+            width: 70px;
+            cursor: grab;
+        }
+        .experiment-area {
+            background: #eef;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            margin: 20px auto;
+            padding: 20px;
+            position: relative;
+            width: 90%;
+            height: 500px;
+        }
+        .droppable {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ddd;
+            border: 2px dashed #bbb;
+            width: 150px;
+            height: 200px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #555;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .reaction-effect {
+            position: absolute;
+            bottom: 50%;
+            left: 50%;
+            transform: translate(-50%, 50%);
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>Mô Phỏng Thí Nghiệm Hóa Học</h1>
+    </header>
+    <div class="toolbox">
+        <!-- Thêm hình ảnh cụ thể -->
+        <img src="images/naoh.png" alt="NaOH" draggable="true" class="tool" id="naoh">
+        <img src="images/hcl.png" alt="HCl" draggable="true" class="tool" id="hcl">
+        <img src="images/cuso4.png" alt="CuSO4" draggable="true" class="tool" id="cuso4">
+        <img src="images/test-tube.png" alt="Ống Nghiệm" draggable="true" class="tool" id="test-tube">
+        <img src="images/burner.png" alt="Đèn Cồn" draggable="true" class="tool" id="burner">
+    </div>
+    <div class="experiment-area">
+        <div class="droppable" id="test-tube-area">Thả vào đây</div>
+        <div class="reaction-effect" id="reaction-effect">
+            <img src="images/gas.png" alt="Gas Effect">
+        </div>
+    </div>
+    <div class="experiment-result text-center mt-4" id="result">
+        Hãy thêm hóa chất và dụng cụ để bắt đầu thí nghiệm!
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script>
+        const tools = document.querySelectorAll('.tool');
+        const droppableArea = document.getElementById('test-tube-area');
+        const result = document.getElementById('result');
+        const reactionEffect = document.getElementById('reaction-effect');
+
+        let chemicals = [];
+
+        tools.forEach(tool => {
+            tool.addEventListener('dragstart', (e) => {
+                e.dataTransfer.setData('text', e.target.id);
+            });
+        });
+
+        droppableArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            droppableArea.style.borderColor = '#4facfe';
+        });
+
+        droppableArea.addEventListener('dragleave', () => {
+            droppableArea.style.borderColor = '#bbb';
+        });
+
+        droppableArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            droppableArea.style.borderColor = '#bbb';
+            const toolId = e.dataTransfer.getData('text');
+            chemicals.push(toolId);
+
+            // Hiển thị thông báo
+            if (toolId === 'naoh') {
+                result.innerHTML = 'Bạn vừa thêm NaOH!';
+            } else if (toolId === 'hcl') {
+                result.innerHTML = 'Bạn vừa thêm HCl!';
+            } else if (toolId === 'cuso4') {
+                result.innerHTML = 'Bạn vừa thêm CuSO₄!';
+            } else if (toolId === 'test-tube') {
+                result.innerHTML = 'Bạn đã thêm ống nghiệm!';
+            } else if (toolId === 'burner') {
+                result.innerHTML = 'Bạn đã thêm đèn cồn!';
+            }
+
+            // Phản ứng hóa học
+            if (chemicals.includes('naoh') && chemicals.includes('hcl')) {
+                result.innerHTML = 'Phản ứng: NaOH + HCl → NaCl + H₂O';
+                showReactionEffect();
+            } else if (chemicals.includes('cuso4') && chemicals.includes('burner')) {
+                result.innerHTML = 'Phản ứng: CuSO₄ bốc hơi dưới đèn cồn!';
+                showReactionEffect();
+            }
+        });
+
+        function showReactionEffect() {
+            gsap.fromTo(reactionEffect, { display: 'block', opacity: 0 }, { opacity: 1, duration: 1 });
+            setTimeout(() => {
+                gsap.to(reactionEffect, { opacity: 0, duration: 1, onComplete: () => reactionEffect.style.display = 'none' });
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
