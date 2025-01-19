@@ -3,133 +3,194 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Khám phá các bài học, bài tập, bảng tuần hoàn và thí nghiệm hóa học thú vị cùng Hóa Học Kỳ Thú.">
+    <meta name="author" content="Cody">
+    <meta name="keywords" content="hóa học, bài tập, thí nghiệm, bảng tuần hoàn, phản ứng hóa học, ứng dụng hóa học">
     <title>Hóa Học Kỳ Thú</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* Tùy chỉnh giao diện */
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
+            background-color: #f4f4f9;
         }
-        .hero {
-            background: url('https://source.unsplash.com/1600x900/?chemistry') no-repeat center center;
-            background-size: cover;
+
+        /* Header */
+        header {
+            background-color: #34495e;
+            padding: 20px;
+        }
+        header h1 {
+            font-size: 2.5rem;
             color: white;
             text-align: center;
-            padding: 150px 20px;
+        }
+
+        nav a {
+            color: #ecf0f1;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+        nav a:hover {
+            color: #f39c12;
+            transition: color 0.3s ease-in-out;
+        }
+
+        /* Hero Section */
+        .hero {
+            background-image: url('https://www.chemistryworld.com/culture/images/atoms_chemical_reaction_shutterstock_960x540.jpg');
+            background-size: cover;
+            background-position: center;
+            color: rgb(12, 11, 11);
+            text-align: center;
+            padding: 100px 20px;
+            border-bottom: 5px solid #f39c12;
         }
         .hero h1 {
-            font-size: 4rem;
-            font-weight: bold;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            font-size: 3.5rem;
+            font-weight: 700;
         }
         .hero p {
-            font-size: 1.5rem;
-            margin-top: 20px;
+            font-size: 1.3rem;
+            font-weight: 500;
         }
         .hero .btn {
-            background-color: #4facfe;
-            border: none;
-            font-size: 1.2rem;
-            padding: 10px 20px;
-        }
-        .hero .btn:hover {
-            background-color: #00c6ff;
-        }
-        .features {
-            padding: 50px 20px;
-            text-align: center;
-        }
-        .features h2 {
-            margin-bottom: 30px;
-            font-size: 2.5rem;
-            color: #343a40;
-        }
-        .features .card {
-            transition: transform 0.3s ease;
-            border: none;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-        }
-        .features .card:hover {
-            transform: translateY(-10px);
-        }
-        footer {
-            background-color: #343a40;
+            background-color: #f39c12;
             color: white;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border-radius: 30px;
+            margin-top: 20px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .hero .btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Section */
+        section {
+            padding: 50px 20px;
+        }
+
+        .articles {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .article {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+            padding: 25px;
+            text-align: center;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .article:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .article h3 {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .article p {
+            color: #7f8c8d;
+        }
+
+        .article a {
+            color: #f39c12;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 10px;
+            display: inline-block;
+        }
+        .article a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #34495e;
+            color: rgb(125, 166, 177);
             text-align: center;
             padding: 20px;
         }
+
         footer a {
-            color: #4facfe;
+            color: #f39c12;
             text-decoration: none;
         }
-        footer a:hover {
-            text-decoration: underline;
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="bg-dark text-white p-3">
-        <div class="container d-flex justify-content-between align-items-center">
-            <h1 class="h4">Hóa Học Kỳ Thú</h1>
-            <nav>
-                <a href="index.html" class="text-white me-3">Trang chủ</a>
-                <a href="lessons.html" class="text-white me-3">Bài học</a>
-                <a href="periodic-table.html" class="text-white me-3">Bảng tuần hoàn</a>
-                <a href="about.html" class="text-white me-3">Giới thiệu</a>
-                <a href="contact.html" class="text-white">Liên hệ</a>
-            </nav>
-        </div>
+    <header>
+        <h1>Hóa Học Kỳ Thú</h1>
+        <nav>
+            <a href="exercisepage.html">Tài liệu</a>
+            <a href="choose.html">Kiểm Tra</a>
+            <a href="periodic-table.html">Bảng Tuần Hoàn</a>
+            <a href="experiment.html">Trang Thí Nghiệm</a>
+            <a href="contact.html">Liên Hệ</a>
+        </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h1>Khám Phá Thế Giới Hóa Học</h1>
-            <p>Mang đến kiến thức hóa học một cách thú vị và dễ hiểu</p>
-            <a href="lessons.html" class="btn btn-light mt-4">Bắt đầu học ngay</a>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="features">
-        <div class="container">
-            <h2>Tính Năng Nổi Bật</h2>
-            <div class="row mt-4">
-                <div class="col-md-4">
-                    <div class="card p-4">
-                        <i class="fas fa-flask fa-3x text-primary mb-3"></i>
-                        <h5 class="card-title">Bài học đa dạng</h5>
-                        <p class="card-text">Cung cấp nội dung từ cơ bản đến nâng cao.</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card p-4">
-                        <i class="fas fa-table fa-3x text-success mb-3"></i>
-                        <a href="periodic-table.html" class="text-white me-3">Bảng tuần hoàn</a><h5 class="card-title">Bảng Tuần Hoàn</h5>
-                        <p class="card-text">Xem thông tin chi tiết về từng nguyên tố.</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card p-4">
-                        <i class="fas fa-search fa-3x text-warning mb-3"></i>
-                        <h5 class="card-title">Tìm kiếm thông minh</h5>
-                        <p class="card-text">Dễ dàng tra cứu kiến thức hóa học.</p>
-                    </div>
-                </div>
+    <div class="hero">
+        <h1>Khám Phá Thế Giới Hóa Học</h1>
+        <p>Cùng học tập và khám phá những phản ứng hóa học thú vị!</p>
+        <a href="experiment.html" class="btn">Bắt Đầu Thí Nghiệm</a>
+    </div>
+    <section>
+        <h2 class="text-center">Thông Tin Về Hóa</h2>
+        <div class="articles">
+            <div class="article">
+                <h3>Các Nguyên Tố Hiếm Trong Vũ Trụ</h3>
+                <p>Khám phá về các nguyên tố hiếm và ứng dụng của chúng trong công nghệ hiện đại.</p>
+                <a href="https://example.com/nguyen-to-hiem" target="_blank">Đọc thêm</a>
+            </div>
+            <div class="article">
+                <h3>Phản Ứng Hóa Học Trong Đời Sống</h3>
+                <p>Tìm hiểu về các phản ứng hóa học xảy ra xung quanh chúng ta mỗi ngày.</p>
+                <a href="https://example.com/phan-ung-doi-song" target="_blank">Đọc thêm</a>
+            </div>
+            <div class="article">
+                <h3>Ứng Dụng Của Hóa Học Trong Y Học</h3>
+                <p>Các bước tiến mới trong việc sử dụng hóa học để phát triển dược phẩm.</p>
+                <a href="https://example.com/hoa-hoc-y-hoc" target="_blank">Đọc thêm</a>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <p>&copy; 2025 Hóa Học Kỳ Thú. Thiết kế bởi Cody 🧑‍💻</p>
-        <a href="https://github.com/">Xem mã nguồn</a>
     </footer>
 
+    <!-- Thêm hiệu ứng cuộn mượt cho các liên kết -->
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+
+    <!-- Thêm Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
