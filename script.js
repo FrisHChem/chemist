@@ -1,27 +1,8 @@
-// script.js
+// Lấy các phần tử cần thiết
+const hamburgerMenu = document.getElementById('hamburger-menu');
+const navLinks = document.getElementById('nav-links');
 
-// Xử lý nộp bài kiểm tra
-document.getElementById('quizForm')?.addEventListener('submit', function(event) {
-    event.preventDefault(); // Ngừng hành động mặc định của form
-
-    let score = 0;
-    // Lấy giá trị trả lời từ các câu hỏi
-    const q1 = document.querySelector('input[name="q1"]:checked');
-    const q2 = document.querySelector('input[name="q2"]:checked');
-
-    // Kiểm tra câu trả lời và tính điểm
-    if (q1 && q1.value === 'A') score++;
-    if (q2 && q2.value === 'B') score++;
-
-    // Lưu kết quả và chuyển đến trang kết quả
-    localStorage.setItem('score', score);
-    location.href = 'result.html';
+// Thêm sự kiện click vào hamburger menu để toggle hiển thị menu
+hamburgerMenu.addEventListener('click', () => {
+  navLinks.classList.toggle('active'); // Thêm hoặc bỏ class "active" để hiện/ẩn menu
 });
-
-// Hiển thị kết quả khi vào trang kết quả
-window.onload = function() {
-    const result = localStorage.getItem('score');
-    if (result !== null) {
-        document.getElementById('result').textContent = `Bạn đã trả lời đúng ${result} câu!`;
-    }
-};

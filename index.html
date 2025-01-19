@@ -8,6 +8,16 @@
     <meta name="keywords" content="hóa học, bài tập, thí nghiệm, bảng tuần hoàn, phản ứng hóa học, ứng dụng hóa học">
     <title>Hóa Học Kỳ Thú</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <head>
+<body>
+  </header>
+  
+  <script src="script.js"></script>
+</body>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Các thẻ khác như title, link đến stylesheet -->
+      </head>
+      
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -133,13 +143,108 @@
         /* Smooth Scroll */
         html {
             scroll-behavior: smooth;
+            /* Mặc định cho máy tính để bàn */
+ body {
+  font-size: 16px;
+  padding: 20px;
+}
+
+/* Đối với các màn hình có chiều rộng dưới 768px (ví dụ: điện thoại di động) */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px; /* Giảm kích thước font cho điện thoại */
+    padding: 10px;   /* Điều chỉnh padding */
+  }
+}
+
+/* Đối với màn hình nhỏ hơn 480px (ví dụ: các thiết bị di động có kích thước nhỏ) */
+@media (max-width: 480px) {
+  body {
+    font-size: 12px; /* Giảm thêm kích thước font cho các thiết bị rất nhỏ */
+  }
+}
+/* Basic Styles for Navbar */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  padding: 10px 20px;
+}
+
+.navbar ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+.navbar ul li {
+  margin-right: 20px;
+}
+
+.navbar ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.hamburger {
+  display: none; /* Hidden by default */
+  cursor: pointer;
+}
+
+.hamburger span {
+  font-size: 30px;
+  color: white;
+}
+
+/* Responsive Styles - When Screen Width is Less Than 768px */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none; /* Hide the navigation links by default */
+    width: 100%;
+    text-align: center;
+    background-color: #333;
+    position: absolute;
+    top: 60px; /* Position below the navbar */
+    left: 0;
+  }
+
+  .nav-links.active {
+    display: block; /* Show the menu when active */
+  }
+
+  .hamburger {
+    display: block; /* Show hamburger menu on small screens */
+  }
+
+  .nav-links li {
+    margin: 15px 0;
+  }
+}
+
+
         }
     </style>
 </head>
 <body>
     <header>
+      </ul>
         <h1>Hóa Học Kỳ Thú</h1>
         <nav>
+             <!-- Hamburger Menu (Hidden on desktop) -->
+      <div class="hamburger" id="hamburger-menu">
+        <span>&#9776;</span>
+        <!-- Navigation Menu -->
+      <ul class="nav-links" id="nav-links">
+      </div>
             <a href="exercisepage.html">Tài liệu</a>
             <a href="choose.html">Kiểm Tra</a>
             <a href="periodic-table.html">Bảng Tuần Hoàn</a>
@@ -175,7 +280,6 @@
     </section>
 
     <footer>
-        <p>&copy; 2025 Hóa Học Kỳ Thú. Thiết kế bởi Cody 🧑‍💻</p>
     </footer>
 
     <!-- Thêm hiệu ứng cuộn mượt cho các liên kết -->
