@@ -1,46 +1,140 @@
-/* Reset một số kiểu dáng mặc định */
+/* Reset mặc định */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Kiểu cho toàn bộ trang */
+/* Đặt font mặc định cho toàn bộ trang */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: #000000;
+    color: #333;
 }
 
-/* Kiểu cho thanh điều hướng */
-nav {
-    background-color: #333; /* Màu nền tối cho thanh điều hướng */
-    padding: 10px 0;
+/* Thanh điều hướng trên */
+nav.navbar {
+    background-color: #343a40;
+}
+
+nav.navbar a.navbar-brand {
+    color: #fff !important;
+    font-size: 24px;
+}
+
+nav.navbar a.nav-link {
+    color: #ffffff !important;
+    font-size: 16px;
+    padding: 10px 15px;
+}
+
+nav.navbar a.nav-link:hover {
+    color: #fff !important;
+    background-color: #575757;
+}
+
+/* Header */
+.header {
+    background-color: #007bff;
+    color: rgb(11, 11, 11);
+    padding: 50px 0;
     text-align: center;
 }
 
-/* Kiểu cho các liên kết trong thanh điều hướng */
-nav a {
-    color: white; /* Màu chữ trắng */
-    padding: 10px 20px;
-    text-decoration: none;
+.header h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.header p {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+/* Thanh điều hướng dưới */
+nav.navbar-light {
+    background-color: #f8f9fa;
+}
+
+nav.navbar-light .nav-link {
+    color: #007bff;
     font-size: 16px;
-    display: inline-block;
-    transition: background-color 0.3s ease; /* Hiệu ứng chuyển màu nền */
 }
 
-/* Hiệu ứng khi di chuột vào các liên kết */
-nav a:hover {
-    background-color: #555; /* Màu nền thay đổi khi hover */
+nav.navbar-light .nav-link:hover {
+    color: #0056b3;
+    background-color: #e9ecef;
 }
 
-/* Kiểu cho thanh điều hướng khi nhìn trên màn hình nhỏ (Mobile) */
+/* Nội dung thí nghiệm */
+.content {
+    padding: 20px;
+}
+
+.experiment {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    margin: 20px 0;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.experiment h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.experiment p {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.experiment iframe {
+    width: 100%;
+    height: 400px;
+    border: none;
+    border-radius: 8px;
+}
+
+/* Footer */
+footer {
+    background-color: #343a40;
+    color: rgb(0, 0, 0);
+    padding: 20px;
+    text-align: center;
+}
+
+footer a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive thiết kế */
 @media (max-width: 768px) {
-    nav {
-        text-align: left;
+    nav.navbar {
+        text-align: center;
     }
 
-    nav a {
-        padding: 15px;
-        display: block;
+    nav.navbar .navbar-nav {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    .header h1 {
+        font-size: 28px;
+    }
+
+    .header p {
+        font-size: 16px;
+    }
+
+    .experiment iframe {
+        height: 300px;
     }
 }
