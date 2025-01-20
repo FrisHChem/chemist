@@ -8,10 +8,7 @@
     <meta name="keywords" content="hóa học, bài tập, thí nghiệm, bảng tuần hoàn, phản ứng hóa học, ứng dụng hóa học">
     <title>Hóa Học Kỳ Thú</title>
     
-    <!-- Liên kết tới tệp CSS chung -->
-    <link href="styles.css" rel="stylesheet">
-
-    <!-- Thêm Bootstrap CSS nếu cần -->
+    <link href="tl.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
@@ -23,22 +20,11 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="choose.html">Kiểm Tra</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="periodic-table.html">Bảng Tuần Hoàn</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="experiment.html">Trang Thí Nghiệm</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Liên Hệ</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">Trang Chủ</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link" href="choose.html">Kiểm Tra</a></li>
+                    <li class="nav-item"><a class="nav-link" href="periodic-table.html">Bảng Tuần Hoàn</a></li>
+                    <li class="nav-item"><a class="nav-link" href="experiment.html">Trang Thí Nghiệm</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Liên Hệ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html">Trang Chủ</a></li>
                 </ul>
             </div>
         </div>
@@ -47,27 +33,84 @@
     <div class="container mt-5">
         <h1 class="text-center mb-4">Danh Sách Bài Tập</h1>
 
-        <!-- Example Exercise 1 -->
-        <div class="exercise mb-4 p-4 bg-light rounded shadow-sm">
-            <h2 class="text-primary">HOÁ 10</h2>
-            <p>Mô tả bài tập: BÀI TẬP CHƯƠNG 3.</p>
-            <div class="file-access">
-                <a href="https://drive.google.com/file/d/1ssOuSCcqPYKatyqPY35sW24Hpb4kBpxH/view?usp=drive_link" target="_blank" class="btn btn-warning">Truy cập File Bài Tập</a>
-            </div>
+        <!-- Form chọn môn và lớp -->
+        <div class="mb-4">
+            <label for="subject" class="form-label">Chọn Môn:</label>
+            <select id="subject" class="form-select">
+                <option value="Hoá học">Hoá học</option>
+                <option value="Vật lý">Vật lý</option>
+                <option value="Sinh học">Sinh học</option>
+            </select>
         </div>
 
-        <!-- Example Exercise 2 -->
-        <div class="exercise mb-4 p-4 bg-light rounded shadow-sm">
-            <h2 class="text-primary">Đề Thi HSGQG 2025</h2>
-            <p>CÓ ĐÁP ÁN.</p>
-            <div class="file-access">
-                <a href="https://drive.google.com/file/d/1D3EPSAPtJPcdCJC2zjwB1m-rkUlzLBF8/view?usp=sharing" target="_blank" class="btn btn-warning">Truy cập File Bài Tập</a>
-            </div>
+        <div class="mb-4">
+            <label for="grade" class="form-label">Chọn Lớp:</label>
+            <select id="grade" class="form-select">
+                <option value="HSGQG">HSGQG</option>
+                <option value="HSG Huyện">HSG Huyện</option>
+                <option value="HSG Tỉnh">HSG Tỉnh</option>
+                <option value="10">Lớp 10</option>
+                <option value="11">Lớp 11</option>
+                <option value="12">Lớp 12</option>
+            </select>
         </div>
 
+        <!-- Nút để tìm kiếm tài liệu -->
+        <button id="findMaterial" class="btn btn-primary">Tìm Tài Liệu</button>
+
+        <div id="materials" class="mt-4">
+            <!-- Kết quả tài liệu sẽ hiển thị tại đây -->
+        </div>
     </div>
+
+    <script>
+        // Hàm tìm tài liệu khi người dùng chọn môn và lớp
+        document.getElementById("findMaterial").addEventListener("click", function() {
+            var subject = document.getElementById("subject").value;
+            var grade = document.getElementById("grade").value;
+            var materialsContainer = document.getElementById("materials");
+
+            // Xóa kết quả cũ
+            materialsContainer.innerHTML = "";
+
+            // Tạo danh sách tài liệu theo môn và lớp
+            var materials = [];
+            if (subject === "Hoá học" && grade === "10") {
+                materials = [
+                    { name: "Bài Tập Hóa 10 Chương 3", url: "https://drive.google.com/file/d/1ssOuSCcqPYKatyqPY35sW24Hpb4kBpxH/view?usp=drive_link" },
+                ];
+        } else if (subject === "Hoá học" && grade === "HSGQG") {
+                materials = [
+                    { name: "HSGQG 2025", url: "https://drive.google.com/file/d/1D3EPSAPtJPcdCJC2zjwB1m-rkUlzLBF8/view?usp=sharing" }
+                ];
+            }
+            
+
+            // Hiển thị tài liệu
+            materials.forEach(function(material) {
+                var materialElement = document.createElement("div");
+                materialElement.classList.add("exercise", "mb-4", "p-4", "bg-light", "rounded", "shadow-sm");
+
+                var title = document.createElement("h2");
+                title.classList.add("text-primary");
+                title.innerHTML = material.name;
+                
+                var link = document.createElement("a");
+                link.classList.add("btn", "btn-warning");
+                link.href = material.url;
+                link.target = "_blank";
+                link.innerHTML = "Truy cập File";
+                
+
+                materialElement.appendChild(title);
+                materialElement.appendChild(link);
+                materialsContainer.appendChild(materialElement);
+            });
+        });
+    </script>
+
     <script src="scripts.js"></script>
-    <!-- Thêm Bootstrap JS nếu cần -->
+    <script src="tl.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

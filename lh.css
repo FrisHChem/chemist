@@ -14,6 +14,17 @@ body {
 
 /* Navbar */
 nav.navbar {
+    nav.navbar a.nav-link:hover {
+        color: #ffcc00 !important; /* Thay đổi màu chữ khi hover */
+        transform: scale(1.1); /* Phóng to một chút */
+        background-color: rgba(0, 123, 255, 0.7); /* Thêm hiệu ứng nền khi hover */
+    }
+    
+    /* Hiệu ứng cho thanh navbar khi di chuột */
+    nav.navbar:hover {
+        background-color: #0056b3; /* Thay đổi màu nền khi hover */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Thêm bóng đổ khi hover */
+    }
     background-color: #007bff;
 }
 
