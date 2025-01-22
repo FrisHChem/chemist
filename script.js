@@ -6,4 +6,3 @@ const navLinks = document.getElementById('nav-links');
 hamburgerMenu.addEventListener('click', () => {
   navLinks.classList.toggle('active'); // Thêm hoặc bỏ class "active" để hiện/ẩn menu
 });
-

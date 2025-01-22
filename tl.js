@@ -16,6 +16,10 @@ document.getElementById("findMaterial").addEventListener("click", function() {
         materials = [
             { name: "HSGQG 2025", url: "https://drive.google.com/file/d/1D3EPSAPtJPcdCJC2zjwB1m-rkUlzLBF8/view?usp=sharing" }
         ];
+    } else if (subject === "Hoá học" && grade === "THPTQG") {
+        materials = [
+            { name: "Thi Thử THPTQG Sở Tuyên Quang ", url: "https://drive.google.com/file/d/1weTIxtPDvP9QW1t3pXiIr48TVS_HMGfA/view?usp=sharing" }
+        ];
     }
 
     // Nếu không có tài liệu
